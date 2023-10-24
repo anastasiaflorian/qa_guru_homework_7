@@ -58,8 +58,8 @@ def test_zip_file_xlsx():
 
 def test_zip_file_pdf():
     file_name = "Python Testing with Pytest (Brian Okken).pdf"
-    o_reader = PdfReader(os.path.join(utils.RESOURCES_PATH, file_name))
     with ZipFile(os.path.join(utils.TMP_PATH, "resources")) as zip_file:
+        o_reader = PdfReader(os.path.join(utils.RESOURCES_PATH, file_name))
         zip_reader = PdfReader(zip_file.open(file_name, 'r'))
         assert len(zip_reader.pages) == len(o_reader.pages)
         assert zip_reader.pages[10].extract_text() == o_reader.pages[10].extract_text()
